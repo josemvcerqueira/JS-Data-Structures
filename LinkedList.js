@@ -22,3 +22,40 @@ LinkedList.prototype.addToTail = function(value) {
 	else this.head = newNode;
 	this.tail = newNode;
 };
+
+LinkedList.prototype.removeHead = function() {
+	// if list is empty
+	if (!this.head) return null;
+
+	// if list is not empty
+	const val = this.head.value;
+
+	// the new head node is the current head node.next
+	this.head = this.head.next;
+
+	// if this head is not null
+	if (this.head) {
+		this.head.prev.next = null;
+		this.head.prev = null;
+	} else this.tail = null;
+	return val;
+};
+
+LinkedList.prototype.removeTail = function() {
+	// if list is empty
+	if (!this.tail) return null;
+	// if list is not empty
+	const val = this.tail.value;
+
+	// the new tail node is the current tail node.prev
+	this.tail = this.head.prev;
+
+	// if tail exists is not null
+	if (this.tail) {
+		this.tail.next.prev = null;
+		this.tail.next = null;
+	} else this.tail = null;
+	return val;
+};
+
+
