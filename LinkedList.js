@@ -36,6 +36,7 @@ LinkedList.prototype.removeHead = function() {
 	// if this head is not null
 	if (this.head) {
 		this.head.prev.next = null;
+
 		this.head.prev = null;
 	} else this.tail = null;
 	return val;
@@ -58,4 +59,23 @@ LinkedList.prototype.removeTail = function() {
 	return val;
 };
 
+LinkedList.prototype.search = function(searchValue) {
+	let currentNode = this.head;
+	while (currentNode) {
+		if (currentNode.value === searchValue) return currentNode.value;
+		currentNode = currentNode.next;
+	}
+	return null;
+};
 
+LinkedList.prototype.indexOf = function(searchValue) {
+	let currentNode = this.head;
+	let counter = 0;
+	const arr = [];
+	while (currentNode) {
+		if (searchValue === currentNode.value) arr.push(counter);
+		counter++;
+		currentNode = currentNode.next;
+	}
+	return arr;
+};
